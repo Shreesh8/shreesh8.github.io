@@ -1,0 +1,348 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cyberpunk Glassmorphism Design System - Neon Cyan on Black */
+
+@layer base {
+  :root {
+    /* Dark cyberpunk theme as default */
+    --background: 0 0% 2%;
+    --foreground: 180 100% 50%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 180 100% 50%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 180 100% 50%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 180 100% 15%;
+    --secondary-foreground: 180 100% 70%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 180 30% 60%;
+
+    --accent: 180 100% 25%;
+    --accent-foreground: 180 100% 90%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 180 50% 20%;
+    --input: 180 50% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom cyberpunk tokens */
+    --neon-cyan: 180 100% 50%;
+    --neon-cyan-glow: 180 100% 60%;
+    --neon-cyan-dim: 180 80% 30%;
+    --dark-bg: 0 0% 2%;
+    --dark-surface: 0 0% 6%;
+    --glass-bg: 180 20% 8%;
+    --glass-border: 180 50% 25%;
+
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 180 100% 50%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 180 100% 15%;
+    --sidebar-accent-foreground: 180 100% 70%;
+    --sidebar-border: 180 50% 20%;
+    --sidebar-ring: 180 100% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 2%;
+    --foreground: 180 100% 50%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 180 100% 50%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 180 100% 50%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 180 100% 15%;
+    --secondary-foreground: 180 100% 70%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 180 30% 60%;
+
+    --accent: 180 100% 25%;
+    --accent-foreground: 180 100% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 180 50% 20%;
+    --input: 180 50% 15%;
+    --ring: 180 100% 50%;
+
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 180 100% 50%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 180 100% 15%;
+    --sidebar-accent-foreground: 180 100% 70%;
+    --sidebar-border: 180 50% 20%;
+    --sidebar-ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Custom scrollbar for cyberpunk feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--dark-bg));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--neon-cyan-dim));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--neon-cyan));
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--glass-bg) / 0.6) 0%,
+      hsl(var(--dark-surface) / 0.4) 100%
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+    box-shadow: 
+      0 8px 32px hsl(var(--neon-cyan) / 0.1),
+      inset 0 1px 0 hsl(var(--neon-cyan) / 0.1);
+  }
+
+  .glass-card::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-cyan) / 0.1) 0%,
+      transparent 50%
+    );
+  }
+
+  .glass-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Neon glow effect */
+  .neon-glow {
+    text-shadow: 
+      0 0 5px hsl(var(--neon-cyan)),
+      0 0 10px hsl(var(--neon-cyan)),
+      0 0 20px hsl(var(--neon-cyan) / 0.5),
+      0 0 40px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  .neon-glow-sm {
+    text-shadow: 
+      0 0 5px hsl(var(--neon-cyan)),
+      0 0 10px hsl(var(--neon-cyan) / 0.5);
+  }
+
+  /* Neon border glow */
+  .neon-border {
+    box-shadow: 
+      0 0 5px hsl(var(--neon-cyan) / 0.5),
+      0 0 10px hsl(var(--neon-cyan) / 0.3),
+      inset 0 0 5px hsl(var(--neon-cyan) / 0.1);
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute -inset-[1px] rounded-xl -z-10;
+    background: linear-gradient(
+      45deg,
+      hsl(var(--neon-cyan)),
+      hsl(var(--neon-cyan-dim)),
+      hsl(var(--neon-cyan)),
+      hsl(var(--neon-cyan-dim))
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Section heading style */
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold tracking-tight;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--neon-cyan-glow)) 50%,
+      hsl(var(--foreground)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Skill badge */
+  .skill-badge {
+    @apply px-3 py-1.5 rounded-full text-sm font-medium;
+    background: hsl(var(--neon-cyan) / 0.1);
+    border: 1px solid hsl(var(--neon-cyan) / 0.3);
+    color: hsl(var(--neon-cyan));
+    transition: all 0.3s ease;
+  }
+
+  .skill-badge:hover {
+    background: hsl(var(--neon-cyan) / 0.2);
+    border-color: hsl(var(--neon-cyan) / 0.6);
+    box-shadow: 0 0 15px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  /* Timeline connector */
+  .timeline-line {
+    @apply absolute left-6 top-0 bottom-0 w-px;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--neon-cyan) / 0) 0%,
+      hsl(var(--neon-cyan) / 0.5) 10%,
+      hsl(var(--neon-cyan) / 0.5) 90%,
+      hsl(var(--neon-cyan) / 0) 100%
+    );
+  }
+
+  .timeline-dot {
+    @apply w-3 h-3 rounded-full;
+    background: hsl(var(--neon-cyan));
+    box-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan) / 0.5);
+  }
+}
+
+@layer utilities {
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-cyan)) 0%,
+      hsl(var(--neon-cyan-glow)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 0.6s ease-out forwards;
+  }
+
+  /* Stagger delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+
+  /* Pulse glow */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Float animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+/* Keyframes */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(var(--neon-cyan) / 0.5), 0 0 10px hsl(var(--neon-cyan) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.8), 0 0 40px hsl(var(--neon-cyan) / 0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 50% { border-color: hsl(var(--neon-cyan)); }
+  51%, 100% { border-color: transparent; }
+}
